@@ -1,16 +1,69 @@
-# React + Vite
+# Hostal Management Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern React + Vite admin dashboard for hostel management, built with dark/light theme, responsive design, and animated UI.
 
-Currently, two official plugins are available:
+##  Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Dark/Light theme toggle
+- Sidebar collapse/expand + mobile-friendly sidebar overlay
+- Navbar with notification and profile dropdown (outside-click close, ESC close)
+- Dashboard analytics with summary cards, chart cards, and recent activity timeline
+- Rooms list support: grid / table view switch
+- Students feature filters (search + payment status)
+- Zoom controls (in/out/reset)
+- Fully responsive for mobile/tablet/desktop
+- CSS variables and Tailwind utilities for consistent theme styling
 
-## React Compiler
+##  Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- Vite
+- Tailwind CSS
+- Framer Motion (animations)
+- React Router DOM (v7)
+- React Icons
 
-## Expanding the ESLint configuration
+##  Folder structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `src/App.jsx` - app shell + theme + zoom + sidebar state
+- `src/routes/index.jsx` - routing config
+- `src/shared/components/layout` - layout components (Navbar, Sidebar)
+- `src/shared/styles/global.css` - theme variables and base CSS
+- `src/features/dashboard` - dashboard module and cards
+- `src/features/rooms` - rooms module (grid/table)
+- `src/features/students` - student module + filter UI
+- `src/features/payments` - payments module
+- `src/features/complaints` - complaints module
+
+##  Installation
+
+```bash
+npm install
+npm run dev
+```
+
+Open browser at `http://localhost:5173`.
+
+## 🛠 Build
+
+```bash
+npm run build
+npm run preview
+```
+
+## Common fixes
+
+- `does not provide an export named 'default'`: Add `export default MyComponent` or use named imports correctly.
+- `Failed to resolve import`: Use correct relative path from file to target component.
+- Theme or color mismatch: prefer the shared class tokens like `theme-card`, `theme-border`, `theme-text`, etc.
+
+## 📘 Notes
+
+- `App.jsx` toggles between `html.classList.add('dark')` and `html.classList.add('light')` for theme modes.
+- Use `base.css`/`global.css` variables to keep theme colors consistent across all components.
+- `Sidebar.jsx` uses `framer-motion` for smooth expand/collapse.
+- `Navbar.jsx` uses `AnimatePresence` for panel visibility transitions.
+
+---
+
+Repository: `Hostal-Management` (owner: `khushbuu-07`).
