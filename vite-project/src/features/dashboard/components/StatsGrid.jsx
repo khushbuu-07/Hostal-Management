@@ -43,15 +43,15 @@ const StatsGrid = () => {
         <motion.div
           key={index}
           whileHover={{ y: -5, scale: 1.02 }}
-          className="relative group p-6 rounded-[24px] bg-[#0a1515]/40 backdrop-blur-xl border border-emerald-900/20 overflow-hidden"
+          className="relative group p-6 rounded-[24px] bg-white/60 dark:bg-[#0a1515]/40 backdrop-blur-xl border border-emerald-100 dark:border-emerald-900/20 overflow-hidden"
         >
           {/* Subtle Hover Glow */}
           <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           
           <div className="flex justify-between items-start relative z-10">
             <div>
-              <p className="text-[10px] font-black uppercase tracking-[2px] text-emerald-800 mb-1">{item.title}</p>
-              <h3 className="text-2xl font-black text-white tracking-tight">{item.value}</h3>
+              <p className="text-[10px] font-black uppercase tracking-[2px] text-emerald-700 dark:text-emerald-500 mb-1">{item.title}</p>
+              <h3 className="text-xl font-black text-slate-900 dark:text-white tracking-tight">{item.value}</h3>
             </div>
             <div className={`p-3 rounded-2xl bg-gradient-to-br ${item.color} text-[#050a0a] shadow-lg`}>
               {item.icon}
@@ -59,7 +59,7 @@ const StatsGrid = () => {
           </div>
 
           <div className="mt-6 flex items-center gap-1.5 relative z-10">
-             <span className="text-[10px] font-bold text-emerald-700 uppercase tracking-tighter">
+             <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-700 uppercase tracking-tighter">
                {item.trend}
              </span>
           </div>

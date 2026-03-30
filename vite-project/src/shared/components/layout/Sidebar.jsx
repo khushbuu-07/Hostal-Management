@@ -29,10 +29,10 @@ const Sidebar = ({ isOpen, isExpanded, setIsExpanded }) => {
           initial={{ width: 0 }}
           exit={{ width: 0 }}
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
-          className="h-screen bg-[#050a0a] text-emerald-100/60 flex flex-col relative border-r border-emerald-900/30 shadow-2xl overflow-hidden fixed md:sticky z-50 left-0 top-0"
+          className="h-screen theme-card text-[var(--text)] flex flex-col relative theme-border shadow-2xl overflow-hidden fixed md:sticky z-50 left-0 top-0"
         >
           {/* Ambient Glow */}
-          <div className="absolute -top-24 -left-24 w-64 h-64 bg-emerald-500/10 blur-[100px] pointer-events-none" />
+          <div className="absolute -top-24 -left-24 w-64 h-64 bg-emerald-500/5 dark:bg-emerald-500/10 blur-[100px] pointer-events-none" />
 
           {/* Toggle Button Container */}
           <div className={`p-6 flex items-center ${expanded ? "justify-between" : "justify-center"}`}>
@@ -48,14 +48,14 @@ const Sidebar = ({ isOpen, isExpanded, setIsExpanded }) => {
                   <div className="w-9 h-9 bg-gradient-to-br from-emerald-400 to-teal-600 rounded-xl flex items-center justify-center text-[#050a0a] shadow-lg">
                     <HiSparkles size={20} />
                   </div>
-                  <h1 className="font-black text-lg text-white leading-none">TRICODE</h1>
+                  <h1 className="font-black text-lg text-emerald-950 dark:text-white leading-none">TRICODE</h1>
                 </motion.div>
               )}
             </AnimatePresence>
 
             <button
               onClick={() => setExpanded(!expanded)}
-              className="bg-[#0d1a1a] border border-emerald-800/50 text-emerald-400 rounded-xl p-2 hover:text-white hover:bg-emerald-600 transition-all shadow-lg"
+              className="bg-emerald-50 dark:bg-[#0d1a1a] border border-emerald-200 dark:border-emerald-800/50 text-emerald-600 dark:text-emerald-400 rounded-xl p-2 hover:text-white hover:bg-emerald-600 transition-all shadow-lg"
             >
               <motion.div animate={{ rotate: expanded ? 180 : 0 }}>
                 <HiChevronRight size={20} />
@@ -72,8 +72,8 @@ const Sidebar = ({ isOpen, isExpanded, setIsExpanded }) => {
                 className={({ isActive }) =>
                   `relative flex items-center ${expanded ? "gap-4 px-4" : "justify-center px-0"} py-3.5 rounded-2xl transition-all duration-300 group ${
                     isActive 
-                      ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" 
-                      : "hover:bg-emerald-900/20 hover:text-emerald-200"
+                      ? "bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20" 
+                      : "hover:bg-emerald-50 dark:hover:bg-emerald-900/20 text-slate-600 dark:text-emerald-100/60 hover:text-emerald-700 dark:hover:text-emerald-200"
                   }`
                 }
               >
@@ -85,7 +85,7 @@ const Sidebar = ({ isOpen, isExpanded, setIsExpanded }) => {
                         className="absolute -left-1 w-1.5 h-7 bg-emerald-400 rounded-r-full shadow-[0_0_15px_#34d399]"
                       />
                     )}
-                    <span className={`text-2xl transition-all ${isActive ? "text-emerald-400 scale-110" : "group-hover:text-emerald-400 group-hover:scale-110"}`}>
+                    <span className={`text-2xl transition-all ${isActive ? "text-emerald-600 dark:text-emerald-400 scale-110" : "group-hover:text-emerald-600 dark:group-hover:text-emerald-400 group-hover:scale-110"}`}>
                       {item.icon}
                     </span>
                     {expanded && (
@@ -105,8 +105,8 @@ const Sidebar = ({ isOpen, isExpanded, setIsExpanded }) => {
 
           {/* Footer - Only Avatar stays visible when collapsed */}
           <div className="p-4 mb-4">
-            <div className={`flex items-center gap-3 p-3 rounded-2xl bg-emerald-900/10 border border-emerald-900/20 ${!expanded && "justify-center"}`}>
-              <div className="w-10 h-10 rounded-xl bg-emerald-900/40 flex-shrink-0 flex items-center justify-center border border-emerald-500/20">
+            <div className={`flex items-center gap-3 p-3 rounded-2xl bg-emerald-50 dark:bg-emerald-900/10 border border-emerald-100 dark:border-emerald-900/20 ${!expanded && "justify-center"}`}>
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 dark:bg-emerald-900/40 flex-shrink-0 flex items-center justify-center border border-emerald-200 dark:border-emerald-500/20">
                 <img 
                   className="w-full h-full object-cover rounded-xl"
                   src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" 
@@ -116,8 +116,8 @@ const Sidebar = ({ isOpen, isExpanded, setIsExpanded }) => {
               {expanded && (
                 <>
                   <div className="flex-1 overflow-hidden">
-                    <p className="text-xs font-black text-white truncate">TREX ADMIN</p>
-                    <p className="text-[10px] text-emerald-700 font-bold truncate">Premium</p>
+                    <p className="text-xs font-black text-slate-900 dark:text-white truncate">TREX ADMIN</p>
+                    <p className="text-[10px] text-emerald-600 dark:text-emerald-700 font-bold truncate">Premium</p>
                   </div>
                   <button className="text-emerald-700 hover:text-rose-400 transition-colors">
                     <HiOutlineLogout size={20} />

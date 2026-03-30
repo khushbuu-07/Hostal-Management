@@ -3,11 +3,11 @@ import {
   HiOutlineSearch, HiOutlineBell, HiOutlineAdjustments, 
   HiOutlineSun, HiOutlineMoon, HiOutlineZoomIn, 
   HiOutlineZoomOut, HiOutlineRefresh, HiOutlineLogout, 
-  HiOutlineUser, HiOutlineShieldCheck, HiOutlineMail
+  HiOutlineUser, HiOutlineShieldCheck, HiOutlineMail, HiOutlineMenuAlt2
 } from "react-icons/hi";
 import { motion, AnimatePresence } from "framer-motion";
 
-const Navbar = ({ onThemeToggle, theme, onZoomIn, onZoomOut, onZoomReset }) => {
+const Navbar = ({ onSidebarToggle, isSidebarOpen, onThemeToggle, theme, onZoomIn, onZoomOut, onZoomReset }) => {
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [activePanel, setActivePanel] = useState(null); // 'notifications' or 'profile'
 
@@ -42,31 +42,41 @@ const Navbar = ({ onThemeToggle, theme, onZoomIn, onZoomOut, onZoomReset }) => {
   
 
   return (
-    <nav ref={navRef} className="sticky top-0 z-50 w-full bg-[#050a0a]/70 backdrop-blur-xl border-b border-emerald-500/10 px-4 md:px-8 py-3">
+    <nav ref={navRef} className="sticky top-0 z-50 w-full bg-[rgba(255,255,255,0.7)] dark:bg-[rgba(5,10,10,0.7)] backdrop-blur-xl border-b theme-border px-4 md:px-8 py-3">
       <div className="max-w-[1600px] mx-auto flex items-center justify-between relative">
         
         {/* Left: Brand */}
-        <div className="flex flex-col">
-          <div className="flex items-center gap-2 text-[9px] uppercase tracking-[3px] font-bold text-emerald-800">
-            <span className="opacity-50">Trex</span>
-            <span className="text-emerald-500">/</span>
-            <span className="text-emerald-400/80">Dashboard</span>
+        <div className="flex items-center gap-4">
+          {!isSidebarOpen && (
+            <button 
+              onClick={onSidebarToggle}
+              className="p-2 rounded-xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-500/20"
+            >
+              <HiOutlineMenuAlt2 size={20} />
+            </button>
+          )}
+          <div className="flex flex-col">
+            <div className="flex items-center gap-2 text-[9px] uppercase tracking-[3px] font-bold text-emerald-700 dark:text-emerald-800">
+              <span className="opacity-50">Trex</span>
+              <span className="text-emerald-500">/</span>
+              <span className="text-emerald-600 dark:text-emerald-400/80">Dashboard</span>
+            </div>
+            <h2 className="text-lg md:text-xl font-black text-slate-900 dark:text-white tracking-tight leading-tight">
+              Hostel <span className="text-emerald-600 dark:text-emerald-500">Elite</span>
+            </h2>
           </div>
-          <h2 className="text-lg md:text-xl font-black text-white tracking-tight leading-tight">
-            Hostel <span className="text-emerald-500">Elite</span>
-          </h2>
         </div>
 
         {/* Center: Search */}
         <div className="hidden lg:block relative group">
           <motion.div animate={{ width: isSearchFocused ? 400 : 300 }} className="relative">
-            <HiOutlineSearch className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${isSearchFocused ? 'text-emerald-400' : 'text-emerald-800'}`} size={18} />
+            <HiOutlineSearch className={`absolute left-4 top-1/2 -translate-y-1/2 transition-colors ${isSearchFocused ? 'text-emerald-500' : 'text-emerald-700'}`} size={18} />
             <input 
               onFocus={() => setIsSearchFocused(true)}
               onBlur={() => setIsSearchFocused(false)}
               type="text" 
               placeholder="Search anything..."
-              className="w-full bg-emerald-950/20 border border-emerald-500/10 text-emerald-100 text-sm rounded-2xl pl-12 pr-4 py-2.5 focus:outline-none focus:border-emerald-500/40 transition-all shadow-inner"
+              className="w-full bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-500/10 text-emerald-900 dark:text-emerald-100 text-sm rounded-2xl pl-12 pr-4 py-2.5 focus:outline-none focus:border-emerald-500/40 transition-all"
             />
           </motion.div>
         </div>
@@ -74,7 +84,7 @@ const Navbar = ({ onThemeToggle, theme, onZoomIn, onZoomOut, onZoomReset }) => {
         {/* Right: Controls & Profile */}
         <div className="flex items-center gap-2 md:gap-5">
           
-          <div className="hidden md:flex items-center gap-1 bg-emerald-950/30 p-1 rounded-2xl border border-emerald-500/5 shadow-inner">
+          <div className="hidden md:flex items-center gap-1 bg-emerald-50 dark:bg-emerald-950/30 p-1 rounded-2xl border border-emerald-200 dark:border-emerald-500/5 shadow-inner">
             <NavUtilityBtn onClick={onThemeToggle} icon={theme === 'dark' ? <HiOutlineSun /> : <HiOutlineMoon />} />
             <div className="w-[1px] h-4 bg-emerald-800/30 mx-1" />
             <NavUtilityBtn onClick={onZoomOut} icon={<HiOutlineZoomOut />} />
@@ -86,7 +96,7 @@ const Navbar = ({ onThemeToggle, theme, onZoomIn, onZoomOut, onZoomReset }) => {
           <div className="relative">
             <button 
               onClick={() => togglePanel('notifications')}
-              className={`relative p-2.5 rounded-xl border transition-all ${activePanel === 'notifications' ? 'bg-emerald-500 text-black border-emerald-400' : 'bg-emerald-500/5 text-emerald-500 border-emerald-500/10'}`}
+              className={`relative p-2.5 rounded-xl border transition-all ${activePanel === 'notifications' ? 'bg-emerald-500 text-white dark:text-black border-emerald-400' : 'bg-emerald-500/5 text-emerald-600 dark:text-emerald-500 border-emerald-200 dark:border-emerald-500/10'}`}
             >
               <HiOutlineBell size={20} />
               <span className="absolute top-2.5 right-2.5 w-2 h-2 bg-emerald-400 rounded-full shadow-[0_0_8px_#34d399]"></span>
@@ -102,11 +112,11 @@ const Navbar = ({ onThemeToggle, theme, onZoomIn, onZoomOut, onZoomReset }) => {
               className="flex items-center gap-3 cursor-pointer group"
             >
               <div className="hidden sm:block text-right leading-none">
-                <p className="text-xs font-black text-white">TREX ADMIN</p>
-                <span className="text-[9px] font-bold text-emerald-700 uppercase">Owner</span>
+                <p className="text-xs font-black text-slate-900 dark:text-white">TREX ADMIN</p>
+                <span className="text-[9px] font-bold text-emerald-600 dark:text-emerald-700 uppercase">Owner</span>
               </div>
               <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-emerald-900 p-[1.5px] shadow-lg">
-                <div className="w-full h-full bg-[#050a0a] rounded-[14px] overflow-hidden">
+                <div className="w-full h-full bg-white dark:bg-[#050a0a] rounded-[14px] overflow-hidden">
                   <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Admin" className="w-full h-full object-cover" />
                 </div>
               </div>
@@ -130,8 +140,8 @@ const NotificationPanel = ({ isOpen }) => (
         exit={{ opacity: 0, y: 15, scale: 0.95 }}
         className="absolute right-0 mt-4 w-80 bg-[#0a1515] border border-emerald-500/20 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden backdrop-blur-2xl z-50"
       >
-        <div className="p-5 border-b border-emerald-500/10 flex justify-between items-center bg-emerald-500/5">
-          <h3 className="text-white font-bold tracking-tight">Notifications</h3>
+        <div className="p-5 border-b border-emerald-500/10 flex justify-between items-center bg-white dark:bg-emerald-500/5">
+          <h3 className="text-slate-900 dark:text-white font-bold tracking-tight">Notifications</h3>
           <span className="bg-emerald-500 text-[#050a0a] text-[10px] font-black px-2 py-0.5 rounded-full">3 NEW</span>
         </div>
         <div className="max-h-[350px] overflow-y-auto">

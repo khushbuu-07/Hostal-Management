@@ -24,16 +24,17 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="app-shell" style={{
-        display: 'grid',
-        gridTemplateColumns: isSidebarOpen ? (isSidebarExpanded ? '280px 1fr' : '88px 1fr') : '0px 1fr',
-        minHeight: '100vh',
-        transition: 'grid-template-columns 0.25s ease',
-        transform: `scale(${zoomScale})`,
-        transformOrigin: 'top left',
-        backgroundColor: 'var(--bg)',
-        color: 'var(--text)'
-      }}>
+      <div
+        className="app-shell"
+        style={{
+          display: 'grid',
+          gridTemplateColumns: isSidebarOpen ? (isSidebarExpanded ? '280px 1fr' : '88px 1fr') : '0px 1fr',
+          minHeight: '100vh',
+          transition: 'grid-template-columns 0.25s ease',
+          transform: `scale(${zoomScale})`,
+          transformOrigin: 'top left',
+        }}
+      >
         <Sidebar
           isOpen={isSidebarOpen}
           isExpanded={isSidebarExpanded}
