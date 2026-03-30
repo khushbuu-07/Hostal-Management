@@ -1,0 +1,36 @@
+:root {
+  --bg: #020617;
+  --card: #0c1520;
+  --text: #e4f4ff;
+  --muted: #9bb7ce;
+}
+
+html.light {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+}
+
+html.dark {
+  --bg: #020617;
+  --card: #0c1520;
+  --text: #e4f4ff;
+  --muted: #9bb7ce;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+a {
+  color: inherit;
+}
